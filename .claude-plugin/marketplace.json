@@ -1,0 +1,16 @@
+{
+  "name": "dialkit",
+  "owner": {
+    "name": "Boris Korsunsky",
+    "email": "boris@gearkit.ai",
+    "url": "https://gearkit.ai"
+  },
+  "description": "Put an AI voice agent on the phone in one sitting: guided setup that interviews you, provisions the calling stack, installs a local harness you own, and places your first test call.",
+  "plugins": [
+    {
+      "name": "dialkit",
+      "source": "./plugins/dialkit",
+      "description": "Interview-driven setup for outbound AI phone calls: provisions Retell, writes a local calling harness into a folder you own, bakes in the compliance guardrails, and walks you through your first test call to your own phone."
+    }
+  ]
+}

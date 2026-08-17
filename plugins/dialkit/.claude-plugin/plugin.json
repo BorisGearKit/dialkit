@@ -1,0 +1,9 @@
+{
+  "name": "dialkit",
+  "description": "Interview-driven setup for outbound AI voice calls: provisions the calling stack, installs a local harness you own, and places your first test call — with disclosure and consent guardrails baked in.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Boris Korsunsky",
+    "email": "boris@gearkit.ai"
+  }
+}
