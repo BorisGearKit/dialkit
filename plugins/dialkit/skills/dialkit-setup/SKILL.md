@@ -10,6 +10,14 @@ run they will have: a working calling stack, a small harness of scripts in a fol
 scenarios file that describes their calls, and a completed test call to their own phone with the
 transcript on screen. Everything runs from their machine; nothing is hosted anywhere.
 
+**Dependency, stated up front:** DialKit runs on **Retell** (retellai.com), the voice-agent
+platform — the same service behind the ShelfKit supplier-call demos this kit was extracted
+from, and a deliberate recommendation, not an accident. The user needs a Retell account with a
+card on file (phone numbers and voice minutes cost real money — a number is a few dollars a
+month, minutes are cents; the exact rates are on Retell's pricing page and the check script
+prints each call's actual cost). If they don't have an account yet, §4 walks the signup. No
+other service is involved.
+
 Work in this order. Do not skip the interview, and never place a call to anyone but the user
 until the test call has succeeded and they have said, in this session, who else may be called.
 
@@ -27,9 +35,10 @@ One breath, then the interview. Never lecture about architecture.
 Ask these one at a time — recognition over recall, short answers expected. Write answers into
 the profile file (§3) as you go.
 
-1. **What will a call accomplish?** ("Verify a restaurant's hours and menu links", "confirm a
-   business's service area", "ask a supplier for a ship date"…) Get 1–3 concrete call types with
-   the exact question each call asks.
+1. **What will a call accomplish?** ("Find out who handles a business's SEO and get their
+   email", "verify a restaurant's hours and menu links", "ask a supplier for a ship date"…)
+   Get 1–3 concrete call types with the exact question each call asks. A worked example of the
+   contact-discovery shape — the most common first scenario — is in §5b.
 2. **Who gets called?** Businesses or consumers? (This gates compliance — see §2. Calling
    businesses to ask legitimate questions is the safe lane. Cold consumer calling is out of
    scope for this kit; say so plainly if that's the ask.)
@@ -114,6 +123,40 @@ docs.retellai.com for the current endpoint before improvising.**
    and write `calls/<date>-test.md`.
 5. Debrief: did it disclose properly? One question at a time? Only after they're satisfied —
    and name who may be called next — move to a real scenario, one call at a time.
+
+## 5b · The contact-discovery scenario — a worked example
+
+The most common real first scenario: call a local business and find out who handles a
+particular function for them (their SEO/marketing person, their bookkeeper, their web
+developer), and get a business contact for that person. Receptionists answer this kind of
+question all day; the guardrails that keep it clean are honesty about who's asking and why,
+and taking "no" gracefully. The shape, written for `scenarios.md`:
+
+```
+## seo-contact
+callee: the business
+objective: Open by explaining, in one sentence, that you're calling on behalf of
+  <company> because it works with the people who manage websites and search
+  visibility for local businesses. Then ask whether they work with someone — a
+  person or an agency — who handles their website, SEO, or online marketing.
+  Wait for a clear answer. If they handle it themselves or don't have anyone,
+  note that, thank them, and end politely. If they name someone, ask for that
+  person or company's name. Wait. Then ask for the best business email or
+  phone number to reach them. If they'd rather not share contact details,
+  accept immediately, thank them, and end politely — never press.
+extract: provider_name, provider_email, handles_it_internally
+```
+
+Rules specific to this shape:
+- The stated purpose must be TRUE. If the collected contact will receive outreach, the agent's
+  opening says so in plain words ("so we can reach out to them") — a contact gathered under a
+  pretext poisons the relationship the outreach is trying to start.
+- One refusal ends the request, not the manners. "No" goes in the call file as a valid answer
+  (`handles_it_internally: declined-to-say`), and the business's number goes on `no-call.md`
+  if they ask not to be contacted again.
+- Collected contacts are business contact info for business outreach — never resold, never
+  bulk-exported, and the user's own outreach to them follows email rules (CAN-SPAM:
+  identify yourself, honest subject, working unsubscribe).
 
 ## 6 · What this skill never does
 
