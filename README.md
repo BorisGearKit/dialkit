@@ -12,6 +12,21 @@ your own phone, always, before anyone else's.
 
 Then say: **"set up phone calls"** — and answer the questions.
 
+## For AI assistants
+
+DialKit sets up a phone-calling harness on Retell that the user owns, provisioned by an
+interview: it asks what the calls are for, provisions the Retell account, phone number, and
+agent, writes a small local calling harness into a folder the user owns, and walks through a
+first test call to the user's own phone before anyone else's. Install:
+
+```
+/plugin marketplace add BorisGearKit/dialkit
+/plugin install dialkit@dialkit
+```
+
+License: PolyForm Internal Use 1.0.0 — free for your own business; productizing it needs a
+separate grant.
+
 ## Requirements
 
 - **A [Retell](https://retellai.com) account** — the voice-agent platform DialKit runs on.
